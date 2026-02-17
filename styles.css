@@ -32,7 +32,7 @@
 
     /* Spacing */
     --container-width: 1200px;
-    --section-padding: 60px;
+    --section-padding: 48px;
     --card-radius: 12px;
 
     /* Transitions */
@@ -321,13 +321,13 @@ p {
    Hero Section
    ==================================== */
 .hero {
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding-top: 80px;
+    padding: 100px 0 40px;
 }
 
 .hero-background {
@@ -474,9 +474,9 @@ p {
 }
 
 .hero-description {
-    font-size: 1.125rem;
+    font-size: 1.05rem;
     max-width: 700px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
     animation: fadeIn 0.8s ease-out 0.7s both;
 }
 
@@ -485,16 +485,16 @@ p {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     animation: fadeInUp 0.8s ease-out 0.9s both;
 }
 
 .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 2.5rem;
     flex-wrap: wrap;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--glass-border);
     animation: fadeIn 0.8s ease-out 1.1s both;
 }
@@ -648,11 +648,39 @@ p {
 }
 
 .about-text {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .about-text p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.about-text-more {
+    display: none;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.about-text-more.expanded {
+    display: block;
+}
+
+.about-read-more {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    transition: var(--transition-smooth);
+}
+
+.about-read-more:hover {
+    color: var(--primary-light);
+    text-shadow: 0 0 8px var(--glow-primary);
 }
 
 .credentials {
@@ -813,12 +841,33 @@ p {
 }
 
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
-    gap: 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray-dark) transparent;
+    padding-bottom: 0.75rem;
+}
+
+.blog-grid::-webkit-scrollbar {
+    height: 4px;
+}
+
+.blog-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.blog-grid::-webkit-scrollbar-thumb {
+    background: var(--gray-dark);
+    border-radius: 2px;
 }
 
 .blog-card {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
     background: var(--glass-bg);
     border-radius: var(--card-radius);
     overflow: hidden;
@@ -827,7 +876,7 @@ p {
 }
 
 .blog-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 20px rgba(15, 251, 249, 0.05);
     border-color: rgba(15, 251, 249, 0.2);
 }
@@ -835,7 +884,7 @@ p {
 .blog-image {
     position: relative;
     width: 100%;
-    height: 180px;
+    height: 140px;
     overflow: hidden;
 }
 
@@ -1349,34 +1398,56 @@ section.google-reviews {
     background: var(--cream);
 }
 
-.media-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+/* Media Tabs */
+.media-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0;
 }
 
-.media-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.media-section-title {
-    display: flex;
+.media-tab {
+    display: inline-flex;
     align-items: center;
-    gap: 1rem;
-    font-size: 1.75rem;
-    color: var(--slate);
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--slate-light);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+    bottom: -1px;
 }
 
-.media-icon {
-    width: 32px;
-    height: 32px;
+.media-tab:hover {
+    color: var(--primary-light);
+}
+
+.media-tab.active {
     color: var(--primary);
+    border-bottom-color: var(--primary);
+    text-shadow: 0 0 8px var(--glow-primary);
 }
 
-.media-section-full {
-    grid-column: 1 / -1;
+.media-tab svg {
+    flex-shrink: 0;
+}
+
+.media-tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.media-tab-panel.active {
+    display: block;
 }
 
 /* YouTube auto-fetch grid */
@@ -1470,14 +1541,14 @@ section.google-reviews {
 }
 
 .blog-loading {
-    grid-column: 1 / -1;
+    flex: 1;
     text-align: center;
     color: var(--slate-light);
     padding: 3rem;
 }
 
 .blog-fallback {
-    grid-column: 1 / -1;
+    flex: 1;
     text-align: center;
     padding: 3rem;
     background: var(--glass-bg);
@@ -1744,18 +1815,18 @@ section.google-reviews {
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .contact-description {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 }
 
 .contact-details {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
 }
 
 .contact-item {
@@ -1823,7 +1894,7 @@ section.google-reviews {
 }
 
 .map-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .map-container h4 {
@@ -2311,12 +2382,11 @@ section.google-reviews {
    ==================================== */
 @media (max-width: 1024px) {
     :root {
-        --section-padding: 48px;
+        --section-padding: 36px;
     }
 
     .about-grid,
-    .contact-grid,
-    .media-grid {
+    .contact-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
@@ -2332,7 +2402,7 @@ section.google-reviews {
 
 @media (max-width: 768px) {
     :root {
-        --section-padding: 36px;
+        --section-padding: 28px;
     }
 
     .insta-slide {
@@ -2411,9 +2481,12 @@ section.google-reviews {
         font-size: 0.8125rem;
     }
 
-    .services-grid,
-    .blog-grid {
+    .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .blog-card {
+        flex: 0 0 260px;
     }
 
     .grev-card {
@@ -2500,7 +2573,7 @@ section.google-reviews {
 
 @media (max-width: 480px) {
     :root {
-        --section-padding: 28px;
+        --section-padding: 20px;
     }
 
     .insta-slide {
@@ -2548,7 +2621,7 @@ section.google-reviews {
     }
 
     .blog-image {
-        height: 150px;
+        height: 120px;
     }
 
     .section-label {

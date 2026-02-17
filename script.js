@@ -25,7 +25,9 @@ function initDeferredSystems() {
     initGoogleReviews();
     initWhatsAppWidget();
     initLazyIframes();
+    initMediaTabs();
     initServicesToggle();
+    initAboutToggle();
     initHeroTyping();
     initStatCounters();
     initParallaxShapes();
@@ -543,6 +545,42 @@ function initTiltCards() {
         card.addEventListener('mouseleave', function() {
             card.style.transform = 'translateY(0) perspective(600px) rotateX(0deg) rotateY(0deg)';
         });
+    });
+}
+
+// ====================================
+// Media Tabs (YouTube / Instagram)
+// ====================================
+function initMediaTabs() {
+    var tabs = document.querySelectorAll('.media-tab');
+    var panels = document.querySelectorAll('.media-tab-panel');
+    if (!tabs.length || !panels.length) return;
+
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            var target = tab.getAttribute('data-tab');
+
+            tabs.forEach(function(t) { t.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('active'); });
+
+            tab.classList.add('active');
+            var panel = document.getElementById('panel' + target.charAt(0).toUpperCase() + target.slice(1));
+            if (panel) panel.classList.add('active');
+        });
+    });
+}
+
+// ====================================
+// About Read More Toggle
+// ====================================
+function initAboutToggle() {
+    var btn = document.getElementById('aboutReadMore');
+    var more = document.getElementById('aboutMore');
+    if (!btn || !more) return;
+
+    btn.addEventListener('click', function() {
+        var expanded = more.classList.toggle('expanded');
+        btn.textContent = expanded ? 'Show Less \u2212' : 'Read More +';
     });
 }
 
