@@ -26,6 +26,10 @@ function initDeferredSystems() {
     initWhatsAppWidget();
     initLazyIframes();
     initServicesToggle();
+    initHeroTyping();
+    initStatCounters();
+    initParallaxShapes();
+    initTiltCards();
 }
 
 // ====================================
@@ -68,9 +72,11 @@ function initNavigation() {
             scrollTicking = true;
             requestAnimationFrame(function() {
                 if (window.pageYOffset > 100) {
-                    nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                    nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.4)';
+                    nav.style.borderBottomColor = 'rgba(15, 251, 249, 0.08)';
                 } else {
-                    nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+                    nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+                    nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.06)';
                 }
                 scrollTicking = false;
             });
@@ -401,6 +407,144 @@ const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/21FxMEDhcGHSCwFB7';
 // Create an API key at https://console.cloud.google.com (enable Places API New).
 const GOOGLE_PLACE_ID = 'YOUR_PLACE_ID';
 const GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY';
+
+// ====================================
+// Hero Typing Effect
+// ====================================
+function initHeroTyping() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var lines = document.querySelectorAll('.title-line');
+    if (!lines.length) return;
+
+    lines.forEach(function(line, i) {
+        var text = line.textContent;
+        line.textContent = '';
+        line.style.visibility = 'visible';
+
+        var charIndex = 0;
+        var delay = i * 800 + 600; // stagger per line
+
+        setTimeout(function() {
+            var interval = setInterval(function() {
+                line.textContent = text.slice(0, charIndex + 1);
+                charIndex++;
+                if (charIndex >= text.length) {
+                    clearInterval(interval);
+                    // Add blinking cursor to last line only
+                    if (i === lines.length - 1) {
+                        line.classList.add('typing-cursor');
+                        setTimeout(function() {
+                            line.classList.remove('typing-cursor');
+                        }, 2500);
+                    }
+                }
+            }, 35);
+        }, delay);
+    });
+}
+
+// ====================================
+// Stat Counter Animation
+// ====================================
+function initStatCounters() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var stats = document.querySelectorAll('.stat-number');
+    if (!stats.length) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return;
+
+            var el = entry.target;
+            var text = el.textContent;
+            var match = text.match(/^(\d+)(\+?)$/);
+
+            if (match) {
+                var target = parseInt(match[1]);
+                var suffix = match[2];
+                var start = 0;
+                var duration = 1200;
+                var startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    var progress = Math.min((timestamp - startTime) / duration, 1);
+                    // ease-out cubic
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var current = Math.round(start + (target - start) * eased);
+                    el.textContent = current + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.classList.add('counted');
+                    }
+                }
+                requestAnimationFrame(step);
+            } else {
+                // Non-numeric stats — reveal with glow
+                el.classList.add('counted');
+            }
+
+            observer.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+
+    stats.forEach(function(stat) { observer.observe(stat); });
+}
+
+// ====================================
+// Parallax Floating Shapes
+// ====================================
+function initParallaxShapes() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var shapes = document.querySelectorAll('.shape');
+    if (!shapes.length) return;
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(function() {
+                var scrollY = window.pageYOffset;
+                shapes.forEach(function(shape, i) {
+                    var speed = (i + 1) * 0.03;
+                    shape.style.transform = 'translateY(' + (scrollY * speed) + 'px)';
+                });
+                ticking = false;
+            });
+        }
+    }, { passive: true });
+}
+
+// ====================================
+// 3D Tilt on Service Cards
+// ====================================
+function initTiltCards() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if ('ontouchstart' in window) return; // skip on touch devices
+
+    var cards = document.querySelectorAll('.service-card');
+
+    cards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var centerX = rect.width / 2;
+            var centerY = rect.height / 2;
+            var rotateX = (y - centerY) / centerY * -4;
+            var rotateY = (x - centerX) / centerX * 4;
+            card.style.transform = 'translateY(-8px) perspective(600px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = 'translateY(0) perspective(600px) rotateX(0deg) rotateY(0deg)';
+        });
+    });
+}
 
 // ====================================
 // Services Expand/Collapse
