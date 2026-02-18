@@ -604,8 +604,7 @@ p {
 /* ====================================
    Content Visibility — skip rendering for off-screen sections
    ==================================== */
-.blog,
-.media {
+.learn {
     content-visibility: auto;
     contain-intrinsic-size: auto 1200px;
 }
@@ -614,12 +613,12 @@ p {
    About Section
    ==================================== */
 /* Pulse-line divider between sections */
-.about, .services, .blog, .media, .contact, section.google-reviews {
+.about, .services, .journey, .learn, .contact, section.google-reviews {
     position: relative;
 }
 
-.about::before, .services::before, .blog::before,
-.media::before, .contact::before, section.google-reviews::before {
+.about::before, .services::before, .journey::before,
+.learn::before, .contact::before, section.google-reviews::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1084,12 +1083,149 @@ p {
 }
 
 /* ====================================
-   Blog Section
+   Patient Journey Section
    ==================================== */
-.blog {
+.journey {
     padding: var(--section-padding) 0;
     background: var(--white);
 }
+
+.journey-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+    margin-top: 3rem;
+}
+
+.journey-track::before {
+    content: '';
+    position: absolute;
+    top: 27px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.journey-step {
+    text-align: center;
+    padding: 0 1.25rem;
+    position: relative;
+    z-index: 1;
+}
+
+.journey-node {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--gray);
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 20px var(--glow-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--primary);
+    transition: var(--transition-smooth);
+}
+
+.journey-step:nth-child(even) .journey-node {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--glow-accent);
+    color: var(--accent-light);
+}
+
+.journey-step:hover .journey-node {
+    transform: scale(1.1);
+}
+
+.journey-step-title {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--slate);
+    margin-bottom: 0.5rem;
+}
+
+.journey-step-desc {
+    font-size: 0.78rem;
+    color: var(--slate-light);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ====================================
+   Conditions Treated
+   ==================================== */
+.conditions-wrapper {
+    display: none;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.conditions-wrapper.open {
+    display: block;
+}
+
+.conditions-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.conditions-group-title {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary);
+    margin-bottom: 0.65rem;
+}
+
+.conditions-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.condition-tag {
+    padding: 0.25rem 0.65rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    font-size: 0.74rem;
+    color: var(--slate-light);
+    cursor: default;
+    transition: var(--transition-smooth);
+}
+
+.condition-tag:hover {
+    background: var(--glass-hover);
+    border-color: rgba(15, 251, 249, 0.15);
+    color: var(--slate);
+}
+
+/* ====================================
+   Learn Section (Articles + Videos + Instagram)
+   ==================================== */
+.learn {
+    padding: var(--section-padding) 0;
+    background: var(--cream);
+}
+
+/* ====================================
+   Blog Section (inner elements — used inside Learn)
+   ==================================== */
 
 .blog-grid {
     display: flex;
@@ -1642,11 +1778,31 @@ section.google-reviews {
 }
 
 /* ====================================
-   Media Section
+   Online Profile Links (Contact section)
    ==================================== */
-.media {
-    padding: var(--section-padding) 0;
-    background: var(--cream);
+.online-profiles {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+}
+
+.profile-link {
+    padding: 0.2rem 0.65rem;
+    background: var(--glass-bg);
+    border: 1px solid rgba(15, 251, 249, 0.15);
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.profile-link:hover {
+    background: rgba(15, 251, 249, 0.08);
+    color: var(--primary-light);
+    border-color: rgba(15, 251, 249, 0.25);
 }
 
 /* Media Tabs */
@@ -2670,6 +2826,19 @@ section.google-reviews {
         gap: 2.5rem;
     }
 
+    .journey-track {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .journey-track::before {
+        display: none;
+    }
+
+    .conditions-panel {
+        grid-template-columns: 1fr;
+    }
+
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -2857,6 +3026,11 @@ section.google-reviews {
 
     .why-choose-grid {
         grid-template-columns: 1fr;
+    }
+
+    .journey-track {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .insta-slide {

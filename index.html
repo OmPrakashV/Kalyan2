@@ -134,9 +134,8 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#reviews" class="nav-link">Reviews</a></li>
-                <li><a href="#media" class="nav-link">Media</a></li>
+                <li><a href="#learn" class="nav-link">Learn</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -413,23 +412,140 @@
                     Show All Services ↓
                 </button>
             </div>
+
+            <!-- Conditions Treated (expandable) -->
+            <div class="conditions-wrapper" id="conditionsWrapper">
+                <div class="conditions-panel">
+                    <div class="conditions-group">
+                        <h4 class="conditions-group-title">Gastrointestinal</h4>
+                        <div class="conditions-tags">
+                            <span class="condition-tag">Gastric Cancer</span>
+                            <span class="condition-tag">Colon Cancer</span>
+                            <span class="condition-tag">Rectal Cancer</span>
+                            <span class="condition-tag">Liver Cancer</span>
+                            <span class="condition-tag">Pancreatic Cancer</span>
+                            <span class="condition-tag">Gallbladder Cancer</span>
+                            <span class="condition-tag">Esophageal Cancer</span>
+                        </div>
+                    </div>
+                    <div class="conditions-group">
+                        <h4 class="conditions-group-title">Breast & Gynecologic</h4>
+                        <div class="conditions-tags">
+                            <span class="condition-tag">Breast Cancer</span>
+                            <span class="condition-tag">Ovarian Cancer</span>
+                            <span class="condition-tag">Uterine Cancer</span>
+                            <span class="condition-tag">Cervical Cancer</span>
+                            <span class="condition-tag">Vulvar Cancer</span>
+                        </div>
+                    </div>
+                    <div class="conditions-group">
+                        <h4 class="conditions-group-title">Head & Neck</h4>
+                        <div class="conditions-tags">
+                            <span class="condition-tag">Thyroid Cancer</span>
+                            <span class="condition-tag">Oral Cancer</span>
+                            <span class="condition-tag">Laryngeal Cancer</span>
+                            <span class="condition-tag">Parotid Tumours</span>
+                            <span class="condition-tag">Salivary Gland Tumours</span>
+                        </div>
+                    </div>
+                    <div class="conditions-group">
+                        <h4 class="conditions-group-title">Thoracic & Others</h4>
+                        <div class="conditions-tags">
+                            <span class="condition-tag">Lung Cancer</span>
+                            <span class="condition-tag">Soft Tissue Sarcoma</span>
+                            <span class="condition-tag">Bone Tumours</span>
+                            <span class="condition-tag">Rib Tumours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:0.75rem;margin-bottom:0.25rem;">
+                <button class="btn btn-secondary" id="conditionsToggle">Conditions We Treat ↓</button>
+            </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section class="blog" id="blog">
+    <!-- Patient Journey Section -->
+    <section class="journey">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Knowledge Center</div>
-                <h2 class="section-title">Latest Articles & Insights</h2>
-                <p class="section-subtitle">
-                    Education and awareness about cancer prevention, treatment, and recovery
-                </p>
+                <div class="section-label">Your Path to Recovery</div>
+                <h2 class="section-title">The Patient Journey</h2>
+                <p class="section-subtitle">A guided process from first consultation to full recovery</p>
             </div>
+            <div class="journey-track">
+                <div class="journey-step">
+                    <div class="journey-node">01</div>
+                    <h3 class="journey-step-title">Consultation</h3>
+                    <p class="journey-step-desc">Discuss your symptoms, medical history, and concerns in a thorough initial assessment</p>
+                </div>
+                <div class="journey-step">
+                    <div class="journey-node">02</div>
+                    <h3 class="journey-step-title">Diagnosis & Planning</h3>
+                    <p class="journey-step-desc">Imaging, biopsy, and multidisciplinary team review to build a personalised treatment plan</p>
+                </div>
+                <div class="journey-step">
+                    <div class="journey-node">03</div>
+                    <h3 class="journey-step-title">Surgery</h3>
+                    <p class="journey-step-desc">Precision intervention using open, laparoscopic, or robotic techniques as appropriate</p>
+                </div>
+                <div class="journey-step">
+                    <div class="journey-node">04</div>
+                    <h3 class="journey-step-title">Recovery & Follow-up</h3>
+                    <p class="journey-step-desc">Ongoing monitoring, wound care, and supportive follow-up to ensure complete healing</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <!-- Blog Grid — articles loaded dynamically from Google Sheets -->
-            <div class="blog-grid" id="blogGrid">
-                <p class="blog-loading">Loading articles...</p>
+    <!-- Learn Section (Articles + Videos + Instagram) -->
+    <section class="learn" id="learn">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Knowledge & Media</div>
+                <h2 class="section-title">Learn, Watch & Follow</h2>
+                <p class="section-subtitle">Cancer education articles, surgical videos, and social updates</p>
+            </div>
+            <div class="media-tabs">
+                <button class="media-tab active" data-tab="articles" id="tabArticles">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8z"/></svg>
+                    Articles
+                </button>
+                <button class="media-tab" data-tab="youtube" id="tabYoutube">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    YouTube
+                </button>
+                <button class="media-tab" data-tab="instagram" id="tabInstagram">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Instagram
+                </button>
+            </div>
+            <div class="media-tab-panels">
+                <div class="media-tab-panel active" id="panelArticles">
+                    <div class="blog-grid" id="blogGrid">
+                        <p class="blog-loading">Loading articles...</p>
+                    </div>
+                </div>
+                <div class="media-tab-panel" id="panelYoutube">
+                    <div class="yt-grid" id="ytGrid">
+                        <p class="yt-loading">Loading latest videos...</p>
+                    </div>
+                    <div style="text-align:center;margin-top:1.5rem;">
+                        <a href="https://www.youtube.com/@ABCcancer" target="_blank" class="btn btn-secondary">
+                            View All on YouTube →
+                        </a>
+                    </div>
+                </div>
+                <div class="media-tab-panel" id="panelInstagram">
+                    <div class="insta-slideshow" id="instaSlideshow">
+                        <p class="insta-loading">Loading Instagram posts...</p>
+                    </div>
+                    <div style="text-align:center;margin-top:1.5rem;">
+                        <a href="https://www.instagram.com/kalyan_oncosurgeon" target="_blank" class="btn btn-secondary">
+                            Follow on Instagram →
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -461,81 +577,6 @@
                 <p class="google-reviews-loading">Loading Google reviews...</p>
             </div>
 
-            <!-- Write a Google Review CTA -->
-            <div class="google-review-cta" id="googleReviewCta">
-                <div class="google-review-cta-content">
-                    <div class="google-review-cta-left">
-                        <svg viewBox="0 0 24 24" width="36" height="36" class="google-review-cta-icon">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                        <div>
-                            <h4 class="google-review-cta-title">Had a good experience?</h4>
-                            <p class="google-review-cta-desc">Your review on Google helps others find quality care</p>
-                        </div>
-                    </div>
-                    <a href="#" id="googleReviewLink" class="btn-google-review" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM12 15l1.57-3.43L17 10l-3.43-1.57L12 5l-1.57 3.43L7 10l3.43 1.57z"/>
-                        </svg>
-                        Write a Review
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Media Section (YouTube & Instagram) -->
-    <section class="media" id="media">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Media & Resources</div>
-                <h2 class="section-title">Educational Content & Updates</h2>
-                <p class="section-subtitle">
-                    Watch educational videos and follow our latest updates on social media
-                </p>
-            </div>
-
-            <!-- Tabbed Media View -->
-            <div class="media-tabs">
-                <button class="media-tab active" data-tab="youtube" id="tabYoutube">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    YouTube
-                </button>
-                <button class="media-tab" data-tab="instagram" id="tabInstagram">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                    Instagram
-                </button>
-            </div>
-
-            <div class="media-tab-panels">
-                <div class="media-tab-panel active" id="panelYoutube">
-                    <div class="yt-grid" id="ytGrid">
-                        <p class="yt-loading">Loading latest videos...</p>
-                    </div>
-                    <div style="text-align:center;margin-top:1.5rem;">
-                        <a href="https://www.youtube.com/@ABCcancer" target="_blank" class="btn btn-secondary">
-                            View All on YouTube →
-                        </a>
-                    </div>
-                </div>
-                <div class="media-tab-panel" id="panelInstagram">
-                    <div class="insta-slideshow" id="instaSlideshow">
-                        <p class="insta-loading">Loading Instagram posts...</p>
-                    </div>
-                    <div style="text-align:center;margin-top:1.5rem;">
-                        <a href="https://www.instagram.com/kalyan_oncosurgeon" target="_blank" class="btn btn-secondary">
-                            Follow on Instagram →
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -578,6 +619,16 @@
                             <div class="contact-text">
                                 <strong>Availability</strong>
                                 <span>Mon-Sat: 9 AM - 6 PM</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🔗</div>
+                            <div class="contact-text">
+                                <strong>Online Profiles</strong>
+                                <div class="online-profiles">
+                                    <a href="#" class="profile-link" target="_blank" rel="noopener">Practo</a>
+                                    <a href="#" class="profile-link" target="_blank" rel="noopener">Lybrate</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -646,6 +697,30 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Write a Google Review CTA -->
+            <div class="google-review-cta" id="googleReviewCta" style="margin-top:2rem;">
+                <div class="google-review-cta-content">
+                    <div class="google-review-cta-left">
+                        <svg viewBox="0 0 24 24" width="36" height="36" class="google-review-cta-icon">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        <div>
+                            <h4 class="google-review-cta-title">Already a patient?</h4>
+                            <p class="google-review-cta-desc">Your Google review helps others find quality cancer care</p>
+                        </div>
+                    </div>
+                    <a href="#" id="googleReviewLink" class="btn-google-review" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM12 15l1.57-3.43L17 10l-3.43-1.57L12 5l-1.57 3.43L7 10l3.43 1.57z"/>
+                        </svg>
+                        Write a Review
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -676,16 +751,18 @@
                     <ul class="footer-links">
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#learn">Articles</a></li>
                         <li><a href="#reviews">Reviews</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4 class="footer-title">Resources</h4>
                     <ul class="footer-links">
-                        <li><a href="#media">Videos</a></li>
+                        <li><a href="#learn">Videos & Articles</a></li>
                         <li><a href="#contact">Directions</a></li>
                         <li><a href="https://api.whatsapp.com/send?phone=919966003251" target="_blank" rel="noopener">WhatsApp</a></li>
+                        <li><a href="#" target="_blank" rel="noopener">Practo Profile</a></li>
+                        <li><a href="#" target="_blank" rel="noopener">Lybrate Profile</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

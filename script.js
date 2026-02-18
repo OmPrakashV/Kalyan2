@@ -27,6 +27,7 @@ function initDeferredSystems() {
     initLazyIframes();
     initMediaTabs();
     initServicesToggle();
+    initConditionsToggle();
     initAboutToggle();
     initHeroTyping();
     initStatCounters();
@@ -567,6 +568,21 @@ function initMediaTabs() {
             var panel = document.getElementById('panel' + target.charAt(0).toUpperCase() + target.slice(1));
             if (panel) panel.classList.add('active');
         });
+    });
+}
+
+// ====================================
+// Conditions Treated Toggle
+// ====================================
+function initConditionsToggle() {
+    var btn = document.getElementById('conditionsToggle');
+    var wrapper = document.getElementById('conditionsWrapper');
+    if (!btn || !wrapper) return;
+
+    btn.addEventListener('click', function() {
+        var isOpen = wrapper.classList.contains('open');
+        wrapper.classList.toggle('open', !isOpen);
+        btn.textContent = isOpen ? 'Conditions We Treat \u2193' : 'Show Less \u2191';
     });
 }
 
