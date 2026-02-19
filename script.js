@@ -6,6 +6,8 @@
 // Urgent Consultation Path
 // ====================================
 function activateUrgentPath() {
+    // Advance to step 2 so the service dropdown is visible
+    advanceForm(true);
     var select = document.getElementById('contactService');
     if (select) select.value = 'urgent';
     var contact = document.getElementById('contact');
@@ -13,6 +15,25 @@ function activateUrgentPath() {
         var offset = contact.getBoundingClientRect().top + window.pageYOffset - 80;
         window.scrollTo({ top: offset, behavior: 'smooth' });
     }
+}
+
+function advanceForm(skipValidation) {
+    var name = document.getElementById('contactName');
+    var phone = document.getElementById('contactPhone');
+    var step1 = document.getElementById('formStep1');
+    var step2 = document.getElementById('formStep2');
+    if (!step1 || !step2) return;
+
+    // Validate step 1 unless skipping (e.g. from urgent path)
+    if (!skipValidation) {
+        if (name && !name.value.trim()) { name.focus(); return; }
+        if (phone && !phone.value.trim()) { phone.focus(); return; }
+    }
+
+    step1.classList.add('form-step--hidden');
+    step2.classList.remove('form-step--hidden');
+    // When coming back to step 2, reset step indicator
+    step2.scrollIntoView ? step2.scrollIntoView({ behavior: 'smooth', block: 'nearest' }) : null;
 }
 
 function setPatientType(type) {
@@ -412,6 +433,12 @@ function initContactForm() {
             // Reset form
             contactForm.reset();
 
+            // Reset form back to step 1
+            var step1 = document.getElementById('formStep1');
+            var step2 = document.getElementById('formStep2');
+            if (step1) step1.classList.remove('form-step--hidden');
+            if (step2) step2.classList.add('form-step--hidden');
+
             // Show success modal
             showModal(
                 'Redirecting to WhatsApp!',
@@ -431,6 +458,7 @@ function initModal() {
     if (closeModal) {
         closeModal.addEventListener('click', function() {
             modal.classList.remove('active');
+            modal.classList.remove('modal--article');
         });
     }
 
@@ -439,6 +467,7 @@ function initModal() {
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 modal.classList.remove('active');
+                modal.classList.remove('modal--article');
             }
         });
     }
@@ -447,6 +476,7 @@ function initModal() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             modal.classList.remove('active');
+            modal.classList.remove('modal--article');
         }
     });
 }
@@ -476,6 +506,8 @@ function showModal(title, message) {
 }
 
 function showArticleModal(title, content) {
+    var modal = document.getElementById('successModal');
+    if (modal) modal.classList.add('modal--article');
     showModal(title, content);
     // Append consultation CTA after article content renders
     var msgEl = document.getElementById('modalMessage');

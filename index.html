@@ -311,6 +311,13 @@
                         <p class="why-card-desc">GI, Breast, Head & Neck, and Gynecologic oncology under one specialist</p>
                     </div>
                 </div>
+                <div class="why-card">
+                    <div class="why-card-icon">🧬</div>
+                    <div class="why-card-body">
+                        <h3 class="why-card-title">Molecular Oncology Training</h3>
+                        <p class="why-card-desc">Advanced training in tumour genetics & personalised cancer therapy — RGCC International, Greece</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -486,7 +493,7 @@
             <div class="conditions-wrapper" id="conditionsWrapper">
                 <div class="conditions-panel">
                     <div class="conditions-group">
-                        <h4 class="conditions-group-title">Gastrointestinal</h4>
+                        <h4 class="conditions-group-title">Gastrointestinal <a href="gi-cancer-surgery-hyderabad.html" class="condition-page-link">→ Details</a></h4>
                         <div class="conditions-tags">
                             <span class="condition-tag">Gastric Cancer</span>
                             <span class="condition-tag">Colon Cancer</span>
@@ -498,7 +505,7 @@
                         </div>
                     </div>
                     <div class="conditions-group">
-                        <h4 class="conditions-group-title">Breast & Gynecologic</h4>
+                        <h4 class="conditions-group-title">Breast & Gynecologic <a href="breast-cancer-surgery-hyderabad.html" class="condition-page-link">→ Breast</a> <a href="gynecologic-oncology-hyderabad.html" class="condition-page-link">→ Gynecologic</a></h4>
                         <div class="conditions-tags">
                             <span class="condition-tag">Breast Cancer</span>
                             <span class="condition-tag">Ovarian Cancer</span>
@@ -508,7 +515,7 @@
                         </div>
                     </div>
                     <div class="conditions-group">
-                        <h4 class="conditions-group-title">Head & Neck</h4>
+                        <h4 class="conditions-group-title">Head & Neck <a href="head-neck-cancer-surgery-hyderabad.html" class="condition-page-link">→ Details</a></h4>
                         <div class="conditions-tags">
                             <span class="condition-tag">Thyroid Cancer</span>
                             <span class="condition-tag">Oral Cancer</span>
@@ -530,6 +537,43 @@
             </div>
             <div style="text-align:center;margin-top:0.75rem;margin-bottom:0.25rem;">
                 <button class="btn btn-secondary" id="conditionsToggle">Conditions We Treat ↓</button>
+            </div>
+
+            <!-- Surgical Approach Breakdown -->
+            <div class="surgical-breakdown">
+                <h3 class="surgical-breakdown-title">Surgical Approaches</h3>
+                <div class="surgical-breakdown-grid">
+                    <div class="surgical-approach-card">
+                        <div class="surgical-approach-icon">🔓</div>
+                        <h4>Open Surgery</h4>
+                        <p>Traditional approach for complex resections, large tumours, and cases requiring extensive reconstruction or staging.</p>
+                        <ul class="surgical-approach-tags">
+                            <li>Radical resections</li>
+                            <li>Cytoreductive surgery</li>
+                            <li>Complex HPB procedures</li>
+                        </ul>
+                    </div>
+                    <div class="surgical-approach-card">
+                        <div class="surgical-approach-icon">🔑</div>
+                        <h4>Laparoscopic (Keyhole)</h4>
+                        <p>Minimally invasive technique using small incisions with a camera, offering reduced blood loss and faster recovery for eligible cases.</p>
+                        <ul class="surgical-approach-tags">
+                            <li>Colectomy & rectal surgery</li>
+                            <li>Hysterectomy</li>
+                            <li>Cholecystectomy & staging</li>
+                        </ul>
+                    </div>
+                    <div class="surgical-approach-card">
+                        <div class="surgical-approach-icon">🤖</div>
+                        <h4>Robotic Surgery</h4>
+                        <p>Surgeon-controlled robotic system providing enhanced precision and articulation in confined spaces — suitable for select oncologic cases.</p>
+                        <ul class="surgical-approach-tags">
+                            <li>Radical prostatectomy</li>
+                            <li>Rectal resection</li>
+                            <li>Thyroid & neck surgery</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -761,6 +805,33 @@
                         </div>
                     </div>
 
+                    <div class="payment-info">
+                        <h4 class="payment-info-title">Insurance & Payment</h4>
+                        <div class="payment-info-items">
+                            <div class="payment-info-item">
+                                <span class="payment-info-icon">🏦</span>
+                                <div>
+                                    <strong>Cashless Insurance</strong>
+                                    <span>Most major TPA/cashless insurance plans accepted at Amor Hospitals</span>
+                                </div>
+                            </div>
+                            <div class="payment-info-item">
+                                <span class="payment-info-icon">🏛️</span>
+                                <div>
+                                    <strong>Government Schemes</strong>
+                                    <span>Aarogyasri, CGHS, ECHS, and ESIC eligible</span>
+                                </div>
+                            </div>
+                            <div class="payment-info-item">
+                                <span class="payment-info-icon">💳</span>
+                                <div>
+                                    <strong>Self-Pay Options</strong>
+                                    <span>Cash, UPI, debit/credit cards, and EMI options available — contact hospital billing for estimates</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="map-container">
                         <div class="map-embed">
                             <iframe
@@ -794,47 +865,54 @@
                                 Follow-Up
                             </button>
                         </div>
-                        <div class="form-group">
-                            <label for="contactName">Full Name <span class="required" aria-hidden="true">*</span></label>
-                            <input type="text" id="contactName" required placeholder="Your name">
-                        </div>
-                        <div class="form-row">
+
+                        <!-- Step 1: Identity -->
+                        <div class="form-step" id="formStep1">
+                            <div class="form-group">
+                                <label for="contactName">Full Name <span class="required" aria-hidden="true">*</span></label>
+                                <input type="text" id="contactName" required placeholder="Your name">
+                            </div>
                             <div class="form-group">
                                 <label for="contactPhone">Phone <span class="required" aria-hidden="true">*</span></label>
                                 <input type="tel" id="contactPhone" required placeholder="+91 12345 67890">
                             </div>
+                            <button type="button" class="btn btn-secondary btn-full" id="formNext" onclick="advanceForm()">
+                                Continue →
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Appointment details -->
+                        <div class="form-step form-step--hidden" id="formStep2">
                             <div class="form-group">
                                 <label for="contactEmail">Email</label>
                                 <input type="email" id="contactEmail" placeholder="your@email.com">
                             </div>
+                            <div class="form-group">
+                                <label for="contactService">Service Required <span class="required" aria-hidden="true">*</span></label>
+                                <select id="contactService" required>
+                                    <option value="">Select service</option>
+                                    <option value="urgent">Urgent Consultation – New Diagnosis</option>
+                                    <option value="consultation">Initial Consultation</option>
+                                    <option value="second-opinion">Second Opinion</option>
+                                    <option value="surgery">Surgical Consultation</option>
+                                    <option value="follow-up">Follow-up Appointment</option>
+                                    <option value="screening">Cancer Screening</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message</label>
+                                <textarea id="contactMessage" rows="3" placeholder="Brief description of your concern..."></textarea>
+                            </div>
+                            <p class="response-time-note">
+                                <span class="response-dot"></span>
+                                Typically responds within 2–4 hours · Mon–Sat, 9 AM – 6 PM
+                            </p>
+                            <button type="submit" class="btn btn-primary btn-full btn-whatsapp">
+                                <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Book via WhatsApp
+                            </button>
+                            <p class="form-note">You'll be redirected to WhatsApp with your details pre-filled</p>
                         </div>
-                        <div class="form-group">
-                            <label for="contactService">Service Required <span class="required" aria-hidden="true">*</span></label>
-                            <select id="contactService" required>
-                                <option value="">Select service</option>
-                                <option value="urgent">Urgent Consultation – New Diagnosis</option>
-                                <option value="consultation">Initial Consultation</option>
-                                <option value="second-opinion">Second Opinion</option>
-                                <option value="surgery">Surgical Consultation</option>
-                                <option value="follow-up">Follow-up Appointment</option>
-                                <option value="screening">Cancer Screening</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactMessage">Message</label>
-                            <textarea id="contactMessage" rows="4" placeholder="Brief description of your concern..."></textarea>
-                        </div>
-                        <p class="response-time-note">
-                            <span class="response-dot"></span>
-                            Typically responds within 2–4 hours · Mon–Sat, 9 AM – 6 PM
-                        </p>
-                        <button type="submit" class="btn btn-primary btn-full btn-whatsapp">
-                            <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            Book via WhatsApp
-                        </button>
-                        <p class="form-note">
-                            You'll be redirected to WhatsApp with your details pre-filled
-                        </p>
                     </form>
                 </div>
             </div>

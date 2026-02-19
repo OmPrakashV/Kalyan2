@@ -3802,3 +3802,188 @@ section.google-reviews {
         display: none;
     }
 }
+
+/* ====================================
+   Condition Page Links
+   ==================================== */
+.condition-page-link {
+    font-size: 0.72rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-left: 0.5rem;
+    opacity: 0.8;
+    vertical-align: middle;
+}
+.condition-page-link:hover { opacity: 1; text-decoration: underline; }
+
+/* ====================================
+   Surgical Breakdown
+   ==================================== */
+.surgical-breakdown {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.surgical-breakdown-title {
+    text-align: center;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--slate-light);
+    margin-bottom: 1.5rem;
+}
+
+.surgical-breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.surgical-approach-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+    padding: 1.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.surgical-approach-card:hover {
+    border-color: rgba(15, 251, 249, 0.15);
+}
+
+.surgical-approach-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.surgical-approach-card h4 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--slate);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.surgical-approach-card p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--slate-light);
+    margin-bottom: 1rem;
+}
+
+.surgical-approach-tags {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.surgical-approach-tags li {
+    font-size: 0.78rem;
+    color: var(--primary);
+    font-family: var(--font-display);
+    letter-spacing: 0.3px;
+    padding-left: 0.75rem;
+    position: relative;
+}
+
+.surgical-approach-tags li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+/* ====================================
+   Payment Info Block
+   ==================================== */
+.payment-info {
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+}
+
+.payment-info-title {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.payment-info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.payment-info-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.payment-info-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.payment-info-item strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--slate);
+    margin-bottom: 0.15rem;
+}
+
+.payment-info-item span {
+    font-size: 0.8rem;
+    color: var(--slate-light);
+    line-height: 1.5;
+}
+
+/* Progressive form steps */
+.form-step--hidden {
+    display: none;
+}
+
+/* ====================================
+   Full-screen article modal on mobile
+   ==================================== */
+@media (max-width: 768px) {
+    .modal--article .modal-content {
+        width: 100%;
+        height: 100dvh;
+        max-height: 100dvh;
+        margin: 0;
+        border-radius: 0;
+        padding: 1.25rem 1rem 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modal--article .modal-icon {
+        display: none;
+    }
+
+    .modal--article .modal-message {
+        flex: 1;
+        overflow-y: auto;
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+
+    .modal--article #closeModal {
+        width: 100%;
+        margin-top: auto;
+    }
+}
