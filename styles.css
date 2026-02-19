@@ -632,6 +632,25 @@ p {
     animation: fadeIn 0.8s ease-out 0.7s both;
 }
 
+.hero-credential-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 251, 249, 0.06);
+    border: 1px solid rgba(15, 251, 249, 0.2);
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+    color: rgba(15, 251, 249, 0.8);
+    margin: 0.75rem 0 0;
+    animation: fadeIn 0.8s ease-out 0.8s both;
+}
+
+.hero-credential-pill svg {
+    flex-shrink: 0;
+    color: rgba(15, 251, 249, 0.8);
+}
+
 .hero-cta {
     display: flex;
     gap: 1rem;
