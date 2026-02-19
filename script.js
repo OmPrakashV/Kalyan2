@@ -2,11 +2,25 @@
 // Clinical Serenity Website - Main JavaScript
 // ====================================
 
+// ====================================
+// Urgent Consultation Path
+// ====================================
+function activateUrgentPath() {
+    var select = document.getElementById('contactService');
+    if (select) select.value = 'urgent';
+    var contact = document.getElementById('contact');
+    if (contact) {
+        var offset = contact.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     // Critical — needed for above-the-fold interaction
     initNavigation();
     initScrollEffects();
+    initUrgentBar();
     initModal();
 
     // Defer non-critical initialization until after first paint
@@ -129,6 +143,42 @@ function initScrollEffects() {
         el.style.transition = 'opacity 0.6s ease-out ' + (index * 0.1) + 's, transform 0.6s ease-out ' + (index * 0.1) + 's';
         observer.observe(el);
     });
+}
+
+function initUrgentBar() {
+    var bar = document.getElementById('urgentBar');
+    var nav = document.getElementById('nav');
+    var hero = document.getElementById('home');
+    var contact = document.getElementById('contact');
+    if (!bar || !nav || !hero || !contact) return;
+
+    // Position bar below the fixed nav
+    bar.style.top = nav.offsetHeight + 'px';
+
+    var barTicking = false;
+
+    function updateBarVisibility() {
+        var scrollY = window.pageYOffset;
+        var heroBottom = hero.offsetTop + hero.offsetHeight;
+        var contactTop = contact.offsetTop;
+        var shouldShow = scrollY > heroBottom && scrollY < contactTop - 100;
+
+        if (shouldShow) {
+            bar.classList.add('urgent-bar--visible');
+            bar.setAttribute('aria-hidden', 'false');
+        } else {
+            bar.classList.remove('urgent-bar--visible');
+            bar.setAttribute('aria-hidden', 'true');
+        }
+        barTicking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!barTicking) {
+            barTicking = true;
+            requestAnimationFrame(updateBarVisibility);
+        }
+    }, { passive: true });
 }
 
 // ====================================
