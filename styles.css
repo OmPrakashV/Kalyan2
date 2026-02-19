@@ -2494,6 +2494,60 @@ section.google-reviews {
     margin-bottom: 1.25rem;
 }
 
+/* Patient type toggle — contact form */
+.patient-type-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.patient-type-btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--glass-bg);
+    color: var(--slate-light);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.patient-type-btn--active {
+    background: rgba(15, 251, 249, 0.08);
+    color: var(--primary);
+    border-color: rgba(15, 251, 249, 0.35);
+}
+
+.patient-type-btn:hover:not(.patient-type-btn--active) {
+    border-color: rgba(255, 255, 255, 0.15);
+    color: var(--slate);
+}
+
+/* Response time indicator */
+.response-time-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--slate-light);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.response-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    flex-shrink: 0;
+    animation: urgentPulse 2s ease-in-out infinite;
+}
+
 /* ====================================
    Footer
    ==================================== */

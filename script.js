@@ -15,6 +15,23 @@ function activateUrgentPath() {
     }
 }
 
+function setPatientType(type) {
+    // Update active button state
+    var btnNew = document.getElementById('ptNew');
+    var btnFollowUp = document.getElementById('ptFollowUp');
+    if (btnNew) btnNew.classList.toggle('patient-type-btn--active', type === 'new');
+    if (btnFollowUp) btnFollowUp.classList.toggle('patient-type-btn--active', type === 'followup');
+
+    // Pre-select matching service
+    var select = document.getElementById('contactService');
+    if (!select) return;
+    if (type === 'new') {
+        select.value = 'consultation';
+    } else {
+        select.value = 'follow-up';
+    }
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     // Critical — needed for above-the-fold interaction
