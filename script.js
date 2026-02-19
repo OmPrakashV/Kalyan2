@@ -64,6 +64,32 @@ function initDeferredSystems() {
     initStatCounters();
     initParallaxShapes();
     initTiltCards();
+    initFAQ();
+}
+
+// ====================================
+// FAQ Accordion
+// ====================================
+function initFAQ() {
+    var items = document.querySelectorAll('.faq-item');
+    items.forEach(function(item) {
+        var btn = item.querySelector('.faq-question');
+        if (!btn) return;
+        btn.addEventListener('click', function() {
+            var isOpen = item.classList.contains('faq-item--open');
+            // Close all
+            items.forEach(function(i) {
+                i.classList.remove('faq-item--open');
+                var b = i.querySelector('.faq-question');
+                if (b) b.setAttribute('aria-expanded', 'false');
+            });
+            // Open clicked if it was closed
+            if (!isOpen) {
+                item.classList.add('faq-item--open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
 }
 
 // ====================================
@@ -272,7 +298,7 @@ function initBlogSystem() {
                 (function(t, c) {
                     card.querySelector('.blog-link').addEventListener('click', function(e) {
                         e.preventDefault();
-                        showModal(t, c);
+                        showArticleModal(t, c);
                     });
                 })(title, content);
 
@@ -447,6 +473,20 @@ function showModal(title, message) {
     }
 
     modal.classList.add('active');
+}
+
+function showArticleModal(title, content) {
+    showModal(title, content);
+    // Append consultation CTA after article content renders
+    var msgEl = document.getElementById('modalMessage');
+    if (!msgEl) return;
+    var cta = document.createElement('div');
+    cta.className = 'article-cta';
+    cta.innerHTML =
+        '<hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:1.25rem 0">' +
+        '<p style="font-family:var(--font-display);font-size:0.82rem;letter-spacing:0.5px;text-align:center;color:var(--slate-light);margin-bottom:0.75rem;text-transform:uppercase">Ready to take the next step?</p>' +
+        '<a href="#contact" class="btn btn-primary" style="display:block;text-align:center;" onclick="document.getElementById(\'successModal\').classList.remove(\'active\')">Book a Consultation to Discuss Your Case</a>';
+    msgEl.appendChild(cta);
 }
 
 // ====================================
