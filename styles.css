@@ -2159,6 +2159,13 @@ section.google-reviews {
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--glass-border);
     padding-bottom: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.media-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .media-tab {
@@ -2179,6 +2186,8 @@ section.google-reviews {
     transition: var(--transition-smooth);
     position: relative;
     bottom: -1px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .media-tab:hover {
@@ -3358,6 +3367,10 @@ section.google-reviews {
         flex: 0 0 33.333%;
     }
 
+    .yt-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .services-track .service-card {
         flex: 0 0 calc((100% - 1.5rem) / 2);
     }
@@ -3378,9 +3391,15 @@ section.google-reviews {
     }
 
     .insta-nav {
-        width: 34px;
-        height: 34px;
+        width: 44px;
+        height: 44px;
         font-size: 1.25rem;
+    }
+
+    .media-tab {
+        padding: 0.625rem 1rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.75px;
     }
 
     .conditions-card {
@@ -3455,6 +3474,18 @@ section.google-reviews {
 
     .blog-card {
         flex: 0 0 260px;
+    }
+
+    .media-tab {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+        gap: 0.35rem;
+    }
+
+    .media-tab svg {
+        width: 14px;
+        height: 14px;
     }
 
     .grev-card {
@@ -3565,6 +3596,10 @@ section.google-reviews {
 
     .insta-slideshow {
         padding: 1rem;
+    }
+
+    .blog-card {
+        flex: 0 0 calc(100vw - 3rem);
     }
 
     .container {
