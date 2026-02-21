@@ -534,12 +534,12 @@ function showArticleModal(title, content) {
 const GOOGLE_SHEET_ID = 'YOUR_SHEET_ID';
 
 var HERO_IMAGES = [
-    'photo.jpeg',
-    'photo2.jpeg',
-    'photo3.jpeg',
-    'photo4.jpeg',
-    'photo5.jpeg',
-    'photo6.jpeg'
+    'images/photo.jpeg',
+    'images/photo2.jpeg',
+    'images/photo3.jpeg',
+    'images/photo4.jpeg',
+    'images/photo5.jpeg',
+    'images/photo6.jpeg'
 ];
 
 const YOUTUBE_CHANNEL_ID = 'YOUR_CHANNEL_ID';
