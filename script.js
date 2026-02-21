@@ -87,6 +87,7 @@ function initDeferredSystems() {
     initParallaxShapes();
     initTiltCards();
     initFAQ();
+    initBackToTop();
 }
 
 // ====================================
@@ -264,6 +265,8 @@ function initBlogSystem() {
 
     var csvUrl = 'https://docs.google.com/spreadsheets/d/' + GOOGLE_SHEET_ID + '/export?format=csv&gid=0';
 
+    showSkeletons(grid, 3, 'skeleton-card');
+
     fetch(csvUrl)
         .then(function(res) {
             if (!res.ok) throw new Error('Sheet fetch failed');
@@ -309,7 +312,7 @@ function initBlogSystem() {
                     '</div>' +
                     '<div class="blog-content">' +
                         '<div class="blog-meta">' +
-                            '<span class="blog-date">' + sanitizeHTML(date) + '</span>' +
+                            '<span class="blog-date">' + sanitizeHTML(date ? formatDate(date) : '') + '</span>' +
                         '</div>' +
                         '<h3 class="blog-title">' + sanitizeHTML(title) + '</h3>' +
                         '<p class="blog-excerpt">' + sanitizeHTML(excerpt) + '</p>' +
@@ -393,6 +396,23 @@ function parseCSV(text) {
 // WhatsApp number (country code + number, no spaces or symbols)
 const WHATSAPP_NUMBER = '919966003251';
 
+function showFieldError(field, msg) {
+    var existing = field.parentElement.querySelector('.field-error');
+    if (existing) existing.remove();
+    var err = document.createElement('span');
+    err.className = 'field-error';
+    err.style.cssText = 'display:block;color:#FF6B6B;font-size:0.8rem;margin-top:0.25rem;';
+    err.textContent = msg;
+    field.parentElement.appendChild(err);
+    field.style.borderColor = '#FF6B6B';
+}
+
+function clearFieldError(field) {
+    var existing = field.parentElement.querySelector('.field-error');
+    if (existing) existing.remove();
+    field.style.borderColor = '';
+}
+
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
 
@@ -400,11 +420,35 @@ function initContactForm() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const name = document.getElementById('contactName').value;
-            const phone = document.getElementById('contactPhone').value;
-            const email = document.getElementById('contactEmail').value;
+            const nameEl = document.getElementById('contactName');
+            const phoneEl = document.getElementById('contactPhone');
+            const emailEl = document.getElementById('contactEmail');
+            const name = nameEl ? nameEl.value.trim() : '';
+            const phone = phoneEl ? phoneEl.value.trim() : '';
+            const email = emailEl ? emailEl.value.trim() : '';
             const service = document.getElementById('contactService').value;
             const message = document.getElementById('contactMessage').value;
+
+            // Clear previous errors
+            if (nameEl) clearFieldError(nameEl);
+            if (phoneEl) clearFieldError(phoneEl);
+            if (emailEl) clearFieldError(emailEl);
+
+            // Validate
+            var valid = true;
+            if (!name || name.length < 2) {
+                if (nameEl) showFieldError(nameEl, 'Please enter your name (at least 2 characters).');
+                valid = false;
+            }
+            if (!phone || !/^[\d\s\+\-]{7,15}$/.test(phone)) {
+                if (phoneEl) showFieldError(phoneEl, 'Please enter a valid phone number.');
+                valid = false;
+            }
+            if (email && !isValidEmail(email)) {
+                if (emailEl) showFieldError(emailEl, 'Please enter a valid email address.');
+                valid = false;
+            }
+            if (!valid) return;
 
             // Save to localStorage as backup
             let contacts = JSON.parse(localStorage.getItem('contacts')) || [];
@@ -589,6 +633,7 @@ function initHeroSlider() {
     var currentIndex = 0;
     var slides = slider.querySelectorAll('.hero-slide');
     var dots = dotsContainer.querySelectorAll('.hero-slider-dot');
+    var heroInterval;
 
     function goToSlide(index) {
         slides[currentIndex].classList.remove('active');
@@ -598,9 +643,43 @@ function initHeroSlider() {
         dots[currentIndex].classList.add('active');
     }
 
-    setInterval(function() {
-        goToSlide(currentIndex + 1);
-    }, 4000);
+    function startHeroInterval() {
+        clearInterval(heroInterval);
+        heroInterval = setInterval(function() {
+            goToSlide(currentIndex + 1);
+        }, 4000);
+    }
+
+    startHeroInterval();
+
+    // Pause on hover
+    var sliderFrame = document.querySelector('.hero-slider-frame');
+    if (sliderFrame) {
+        sliderFrame.addEventListener('mouseenter', function() { clearInterval(heroInterval); });
+        sliderFrame.addEventListener('mouseleave', startHeroInterval);
+    }
+
+    // Pause when tab is hidden
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            clearInterval(heroInterval);
+        } else {
+            startHeroInterval();
+        }
+    });
+
+    // Touch swipe support
+    var touchStartX = 0;
+    slider.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    slider.addEventListener('touchend', function(e) {
+        var delta = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 50) {
+            goToSlide(currentIndex + (delta < 0 ? 1 : -1));
+            startHeroInterval();
+        }
+    }, { passive: true });
 }
 
 // ====================================
@@ -841,6 +920,19 @@ function initConditionsCarousel() {
     carousel.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
     carousel.addEventListener('mouseleave', startAuto);
 
+    // Touch swipe support
+    var swipeStartX = 0;
+    track.addEventListener('touchstart', function(e) {
+        swipeStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+        var delta = e.changedTouches[0].clientX - swipeStartX;
+        if (Math.abs(delta) > 50) {
+            goTo(currentIndex + (delta < 0 ? 1 : -1));
+            resetAuto();
+        }
+    }, { passive: true });
+
     buildDots();
     updateTrack();
     startAuto();
@@ -950,6 +1042,19 @@ function initServicesCarousel() {
     carousel.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
     carousel.addEventListener('mouseleave', startAuto);
 
+    // Touch swipe support
+    var swipeStartX = 0;
+    track.addEventListener('touchstart', function(e) {
+        swipeStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+        var delta = e.changedTouches[0].clientX - swipeStartX;
+        if (Math.abs(delta) > 50) {
+            goTo(currentIndex + (delta < 0 ? 1 : -1));
+            resetAuto();
+        }
+    }, { passive: true });
+
     buildDots();
     updateTrack();
     startAuto();
@@ -1041,6 +1146,8 @@ function initYouTubeFeed() {
     // Use a public CORS proxy to fetch the RSS feed from the browser
     const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl);
 
+    showSkeletons(grid, 3, 'skeleton-card skeleton-card--sm');
+
     fetch(proxyUrl)
         .then(function(res) {
             if (!res.ok) throw new Error('Feed fetch failed');
@@ -1117,6 +1224,8 @@ function initGoogleReviews() {
 
     var apiUrl = 'https://places.googleapis.com/v1/places/' + GOOGLE_PLACE_ID +
         '?key=' + GOOGLE_MAPS_API_KEY;
+
+    showSkeletons(container, 1, 'skeleton-card');
 
     fetch(apiUrl, {
         headers: {
@@ -1329,6 +1438,8 @@ function initInstagramFeed() {
         '&limit=' + INSTAGRAM_POST_COUNT +
         '&access_token=' + INSTAGRAM_ACCESS_TOKEN;
 
+    showSkeletons(container, 4, 'skeleton-card skeleton-card--sm');
+
     fetch(apiUrl)
         .then(function(res) {
             if (!res.ok) throw new Error('Instagram API error');
@@ -1479,7 +1590,39 @@ function buildInstaSlideshow(container, posts) {
                 dotsWrap.appendChild(dot);
             }
             goTo(0);
-        }, 250);
+        }, 150);
+    });
+}
+
+// ====================================
+// Skeleton Loading Helper
+// ====================================
+function showSkeletons(container, count, extraClass) {
+    container.innerHTML = '';
+    for (var i = 0; i < count; i++) {
+        var el = document.createElement('div');
+        el.className = 'skeleton' + (extraClass ? ' ' + extraClass : '');
+        container.appendChild(el);
+    }
+}
+
+// ====================================
+// Back to Top Button
+// ====================================
+function initBackToTop() {
+    var btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 400) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
