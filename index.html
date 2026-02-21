@@ -238,7 +238,7 @@
                     Comprehensive cancer care specializing in GI, Breast, Head & Neck, and Gynecologic oncology.
                 </p>
                 <div class="hero-credential-pill">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M12 5v-2M12 21v-2M5 12h-2M21 12h-2"/></svg>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
                     <span>RGCC Molecular Oncology Training &mdash; RGCC International, Greece</span>
                 </div>
                 <div class="hero-cta">
@@ -271,15 +271,12 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hero-image-frame">
-                    <img src="photo.jpeg" alt="Dr. Kalyan Vangara - Consultant Surgical Oncologist" width="725" height="798">
+                <div class="hero-slider-frame">
+                    <div class="hero-slider"></div>
+                    <div class="hero-slider-dots"></div>
                     <div class="hero-image-accent"></div>
                 </div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
         </div>
     </section>
 
@@ -422,118 +419,136 @@
                     Specialized treatment across multiple oncology and surgical disciplines
                 </p>
             </div>
-            <div class="services-grid" id="servicesGrid">
-                <div class="service-card">
-                    <div class="service-icon">🎗️</div>
-                    <h3 class="service-title">Breast Surgery & Oncoplasty</h3>
-                    <p class="service-description">
-                        Advanced breast conservation, oncoplastic, and reconstruction techniques with focus on optimal outcomes
-                    </p>
+            <div class="services-carousel">
+                <button class="services-nav services-nav--prev" id="servicesPrev" aria-label="Previous services">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="services-track-wrapper">
+                    <div class="services-track" id="servicesTrack">
+                        <div class="service-card">
+                            <div class="service-icon">🎗️</div>
+                            <h3 class="service-title">Breast Surgery & Oncoplasty</h3>
+                            <p class="service-description">
+                                Advanced breast conservation, oncoplastic, and reconstruction techniques with focus on optimal outcomes
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🫁</div>
+                            <h3 class="service-title">GI & HPB Oncology</h3>
+                            <p class="service-description">
+                                Surgical management of gastrointestinal, hepatobiliary, and pancreatic cancers using open and minimally invasive approaches
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🔬</div>
+                            <h3 class="service-title">Head & Neck Oncology</h3>
+                            <p class="service-description">
+                                Comprehensive surgical care for oral, thyroid, and head-neck cancers
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🩺</div>
+                            <h3 class="service-title">Gynecologic Oncology</h3>
+                            <p class="service-description">
+                                Surgical treatment of gynecologic malignancies with specialized oncologic expertise
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🦴</div>
+                            <h3 class="service-title">Thoracic & Ortho Oncology</h3>
+                            <p class="service-description">
+                                Surgical management of thoracic and musculoskeletal tumors with a multidisciplinary approach
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🤖</div>
+                            <h3 class="service-title">Robotic Surgery</h3>
+                            <p class="service-description">
+                                Robot-assisted precision surgery for complex oncologic procedures with enhanced accuracy and minimal scarring
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">⚕️</div>
+                            <h3 class="service-title">Laparoscopic Surgery</h3>
+                            <p class="service-description">
+                                Minimally invasive keyhole procedures with smaller incisions, less pain, and faster recovery
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">💊</div>
+                            <h3 class="service-title">Cancer Screening</h3>
+                            <p class="service-description">
+                                Preventive care and early detection programs including endoscopy, colonoscopy, and screening for at-risk populations
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🫁</div>
-                    <h3 class="service-title">GI & HPB Oncology</h3>
-                    <p class="service-description">
-                        Surgical management of gastrointestinal, hepatobiliary, and pancreatic cancers using open and minimally invasive approaches
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔬</div>
-                    <h3 class="service-title">Head & Neck Oncology</h3>
-                    <p class="service-description">
-                        Comprehensive surgical care for oral, thyroid, and head-neck cancers
-                    </p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🩺</div>
-                    <h3 class="service-title">Gynecologic Oncology</h3>
-                    <p class="service-description">
-                        Surgical treatment of gynecologic malignancies with specialized oncologic expertise
-                    </p>
-                </div>
-                <div class="service-card service-card--collapsed">
-                    <div class="service-icon">🦴</div>
-                    <h3 class="service-title">Thoracic & Ortho Oncology</h3>
-                    <p class="service-description">
-                        Surgical management of thoracic and musculoskeletal tumors with a multidisciplinary approach
-                    </p>
-                </div>
-                <div class="service-card service-card--collapsed">
-                    <div class="service-icon">🤖</div>
-                    <h3 class="service-title">Robotic Surgery</h3>
-                    <p class="service-description">
-                        Robot-assisted precision surgery for complex oncologic procedures with enhanced accuracy and minimal scarring
-                    </p>
-                </div>
-                <div class="service-card service-card--collapsed">
-                    <div class="service-icon">⚕️</div>
-                    <h3 class="service-title">Laparoscopic Surgery</h3>
-                    <p class="service-description">
-                        Minimally invasive keyhole procedures with smaller incisions, less pain, and faster recovery
-                    </p>
-                </div>
-                <div class="service-card service-card--collapsed">
-                    <div class="service-icon">💊</div>
-                    <h3 class="service-title">Cancer Screening</h3>
-                    <p class="service-description">
-                        Preventive care and early detection programs including endoscopy, colonoscopy, and screening for at-risk populations
-                    </p>
-                </div>
-            </div>
-            <div style="text-align:center;margin-top:1.5rem;">
-                <button class="btn btn-secondary" id="servicesToggle" aria-expanded="false">
-                    Show All Services ↓
+                <button class="services-nav services-nav--next" id="servicesNext" aria-label="Next services">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </button>
             </div>
+            <div class="services-dots" id="servicesDots"></div>
 
-            <!-- Conditions Treated (expandable) -->
-            <div class="conditions-wrapper" id="conditionsWrapper">
-                <div class="conditions-panel">
-                    <div class="conditions-group">
-                        <h4 class="conditions-group-title">Gastrointestinal <a href="gi-cancer-surgery-hyderabad.html" class="condition-page-link">→ Details</a></h4>
-                        <div class="conditions-tags">
-                            <span class="condition-tag">Gastric Cancer</span>
-                            <span class="condition-tag">Colon Cancer</span>
-                            <span class="condition-tag">Rectal Cancer</span>
-                            <span class="condition-tag">Liver Cancer</span>
-                            <span class="condition-tag">Pancreatic Cancer</span>
-                            <span class="condition-tag">Gallbladder Cancer</span>
-                            <span class="condition-tag">Esophageal Cancer</span>
-                        </div>
-                    </div>
-                    <div class="conditions-group">
-                        <h4 class="conditions-group-title">Breast & Gynecologic <a href="breast-cancer-surgery-hyderabad.html" class="condition-page-link">→ Breast</a> <a href="gynecologic-oncology-hyderabad.html" class="condition-page-link">→ Gynecologic</a></h4>
-                        <div class="conditions-tags">
-                            <span class="condition-tag">Breast Cancer</span>
-                            <span class="condition-tag">Ovarian Cancer</span>
-                            <span class="condition-tag">Uterine Cancer</span>
-                            <span class="condition-tag">Cervical Cancer</span>
-                            <span class="condition-tag">Vulvar Cancer</span>
-                        </div>
-                    </div>
-                    <div class="conditions-group">
-                        <h4 class="conditions-group-title">Head & Neck <a href="head-neck-cancer-surgery-hyderabad.html" class="condition-page-link">→ Details</a></h4>
-                        <div class="conditions-tags">
-                            <span class="condition-tag">Thyroid Cancer</span>
-                            <span class="condition-tag">Oral Cancer</span>
-                            <span class="condition-tag">Laryngeal Cancer</span>
-                            <span class="condition-tag">Parotid Tumours</span>
-                            <span class="condition-tag">Salivary Gland Tumours</span>
-                        </div>
-                    </div>
-                    <div class="conditions-group">
-                        <h4 class="conditions-group-title">Thoracic & Others <a href="thoracic-ortho-oncology-hyderabad.html" class="condition-page-link">→ Details</a></h4>
-                        <div class="conditions-tags">
-                            <span class="condition-tag">Lung Cancer</span>
-                            <span class="condition-tag">Soft Tissue Sarcoma</span>
-                            <span class="condition-tag">Bone Tumours</span>
-                            <span class="condition-tag">Rib Tumours</span>
-                        </div>
-                    </div>
+            <!-- Conditions Treated — always visible carousel row -->
+            <div class="conditions-section">
+                <div class="conditions-section-header">
+                    <div class="section-label">Areas of Treatment</div>
+                    <h3 class="conditions-section-title">Conditions We Treat</h3>
                 </div>
-            </div>
-            <div style="text-align:center;margin-top:0.75rem;margin-bottom:0.25rem;">
-                <button class="btn btn-secondary" id="conditionsToggle">Conditions We Treat ↓</button>
+                <div class="conditions-carousel">
+                    <button class="conditions-nav conditions-nav--prev" id="conditionsPrev" aria-label="Previous conditions">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <div class="conditions-track-wrapper">
+                        <div class="conditions-track" id="conditionsTrack">
+                            <div class="conditions-card">
+                                <h4 class="conditions-group-title">Gastrointestinal <a href="gi-cancer-surgery-hyderabad.html" class="condition-page-link">→ Details</a></h4>
+                                <div class="conditions-tags">
+                                    <span class="condition-tag">Gastric Cancer</span>
+                                    <span class="condition-tag">Colon Cancer</span>
+                                    <span class="condition-tag">Rectal Cancer</span>
+                                    <span class="condition-tag">Liver Cancer</span>
+                                    <span class="condition-tag">Pancreatic Cancer</span>
+                                    <span class="condition-tag">Gallbladder Cancer</span>
+                                    <span class="condition-tag">Esophageal Cancer</span>
+                                </div>
+                            </div>
+                            <div class="conditions-card">
+                                <h4 class="conditions-group-title">Breast &amp; Gynecologic <a href="breast-cancer-surgery-hyderabad.html" class="condition-page-link">→ Breast</a> <a href="gynecologic-oncology-hyderabad.html" class="condition-page-link">→ Gynecologic</a></h4>
+                                <div class="conditions-tags">
+                                    <span class="condition-tag">Breast Cancer</span>
+                                    <span class="condition-tag">Ovarian Cancer</span>
+                                    <span class="condition-tag">Uterine Cancer</span>
+                                    <span class="condition-tag">Cervical Cancer</span>
+                                    <span class="condition-tag">Vulvar Cancer</span>
+                                </div>
+                            </div>
+                            <div class="conditions-card">
+                                <h4 class="conditions-group-title">Head &amp; Neck <a href="head-neck-cancer-surgery-hyderabad.html" class="condition-page-link">→ Details</a></h4>
+                                <div class="conditions-tags">
+                                    <span class="condition-tag">Thyroid Cancer</span>
+                                    <span class="condition-tag">Oral Cancer</span>
+                                    <span class="condition-tag">Laryngeal Cancer</span>
+                                    <span class="condition-tag">Parotid Tumours</span>
+                                    <span class="condition-tag">Salivary Gland Tumours</span>
+                                </div>
+                            </div>
+                            <div class="conditions-card">
+                                <h4 class="conditions-group-title">Thoracic &amp; Others <a href="thoracic-ortho-oncology-hyderabad.html" class="condition-page-link">→ Details</a></h4>
+                                <div class="conditions-tags">
+                                    <span class="condition-tag">Lung Cancer</span>
+                                    <span class="condition-tag">Soft Tissue Sarcoma</span>
+                                    <span class="condition-tag">Bone Tumours</span>
+                                    <span class="condition-tag">Rib Tumours</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="conditions-nav conditions-nav--next" id="conditionsNext" aria-label="Next conditions">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+                <div class="conditions-dots" id="conditionsDots"></div>
             </div>
 
             <!-- Surgical Approach Breakdown -->

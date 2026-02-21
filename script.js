@@ -78,9 +78,10 @@ function initDeferredSystems() {
     initWhatsAppWidget();
     initLazyIframes();
     initMediaTabs();
-    initServicesToggle();
-    initConditionsToggle();
+    initServicesCarousel();
+    initConditionsCarousel();
     initAboutToggle();
+    initHeroSlider();
     initHeroTyping();
     initStatCounters();
     initParallaxShapes();
@@ -532,6 +533,15 @@ function showArticleModal(title, content) {
 // 3. Copy the Sheet ID from the URL (the long string between /d/ and /edit)
 const GOOGLE_SHEET_ID = 'YOUR_SHEET_ID';
 
+var HERO_IMAGES = [
+    'photo.jpeg',
+    'photo2.jpeg',
+    'photo3.jpeg',
+    'photo4.jpeg',
+    'photo5.jpeg',
+    'photo6.jpeg'
+];
+
 const YOUTUBE_CHANNEL_ID = 'YOUR_CHANNEL_ID';
 const YOUTUBE_VIDEO_COUNT = 6;
 
@@ -549,6 +559,49 @@ const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/21FxMEDhcGHSCwFB7';
 // Create an API key at https://console.cloud.google.com (enable Places API New).
 const GOOGLE_PLACE_ID = 'YOUR_PLACE_ID';
 const GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY';
+
+// ====================================
+// Hero Image Slider
+// ====================================
+function initHeroSlider() {
+    var slider = document.querySelector('.hero-slider');
+    var dotsContainer = document.querySelector('.hero-slider-dots');
+    if (!slider || !dotsContainer || HERO_IMAGES.length <= 1) return;
+
+    // Build slides
+    HERO_IMAGES.forEach(function(src, i) {
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Dr. Kalyan Vangara';
+        img.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        slider.appendChild(img);
+    });
+
+    // Build dots
+    HERO_IMAGES.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'hero-slider-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', function() { goToSlide(i); });
+        dotsContainer.appendChild(dot);
+    });
+
+    var currentIndex = 0;
+    var slides = slider.querySelectorAll('.hero-slide');
+    var dots = dotsContainer.querySelectorAll('.hero-slider-dot');
+
+    function goToSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+        currentIndex = (index + slides.length) % slides.length;
+        slides[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+    }
+
+    setInterval(function() {
+        goToSlide(currentIndex + 1);
+    }, 4000);
+}
 
 // ====================================
 // Hero Typing Effect
@@ -713,15 +766,93 @@ function initMediaTabs() {
 // ====================================
 // Conditions Treated Toggle
 // ====================================
-function initConditionsToggle() {
-    var btn = document.getElementById('conditionsToggle');
-    var wrapper = document.getElementById('conditionsWrapper');
-    if (!btn || !wrapper) return;
+function initConditionsCarousel() {
+    var track = document.getElementById('conditionsTrack');
+    var dotsEl = document.getElementById('conditionsDots');
+    var prevBtn = document.getElementById('conditionsPrev');
+    var nextBtn = document.getElementById('conditionsNext');
+    if (!track || !dotsEl || !prevBtn || !nextBtn) return;
 
-    btn.addEventListener('click', function() {
-        var isOpen = wrapper.classList.contains('open');
-        wrapper.classList.toggle('open', !isOpen);
-        btn.textContent = isOpen ? 'Conditions We Treat \u2193' : 'Show Less \u2191';
+    var cards = track.querySelectorAll('.conditions-card');
+    var total = cards.length;
+    var currentIndex = 0;
+
+    function getPerView() {
+        return window.innerWidth >= 768 ? 2 : 1;
+    }
+
+    function getMaxIndex() {
+        return Math.max(0, total - getPerView());
+    }
+
+    function updateTrack() {
+        var wrapper = track.parentElement;
+        var gap = 24; // 1.5rem
+        var perView = getPerView();
+        var cardWidth = (wrapper.offsetWidth - gap * (perView - 1)) / perView;
+        var offset = currentIndex * (cardWidth + gap);
+        track.style.transform = 'translateX(-' + offset + 'px)';
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= getMaxIndex();
+        dotsEl.querySelectorAll('.conditions-dot').forEach(function(d, i) {
+            d.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    function goTo(index) {
+        currentIndex = Math.max(0, Math.min(index, getMaxIndex()));
+        updateTrack();
+    }
+
+    function buildDots() {
+        dotsEl.innerHTML = '';
+        var max = getMaxIndex();
+        for (var i = 0; i <= max; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'conditions-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            (function(idx) {
+                dot.addEventListener('click', function() { goTo(idx); resetAuto(); });
+            })(i);
+            dotsEl.appendChild(dot);
+        }
+    }
+
+    var AUTOPLAY_MS = 5000;
+    var autoTimer;
+
+    function advance() {
+        goTo(currentIndex >= getMaxIndex() ? 0 : currentIndex + 1);
+    }
+
+    function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(advance, AUTOPLAY_MS);
+    }
+
+    function resetAuto() {
+        startAuto();
+    }
+
+    prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); resetAuto(); });
+    nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); resetAuto(); });
+
+    var carousel = track.parentElement.parentElement;
+    carousel.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
+    carousel.addEventListener('mouseleave', startAuto);
+
+    buildDots();
+    updateTrack();
+    startAuto();
+
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (currentIndex > getMaxIndex()) currentIndex = getMaxIndex();
+            buildDots();
+            updateTrack();
+        }, 150);
     });
 }
 
@@ -740,17 +871,97 @@ function initAboutToggle() {
 }
 
 // ====================================
-// Services Expand/Collapse
+// Services Carousel
 // ====================================
-function initServicesToggle() {
-    var btn = document.getElementById('servicesToggle');
-    var grid = document.getElementById('servicesGrid');
-    if (!btn || !grid) return;
+function initServicesCarousel() {
+    var track = document.getElementById('servicesTrack');
+    var dotsEl = document.getElementById('servicesDots');
+    var prevBtn = document.getElementById('servicesPrev');
+    var nextBtn = document.getElementById('servicesNext');
+    if (!track || !dotsEl || !prevBtn || !nextBtn) return;
 
-    btn.addEventListener('click', function() {
-        var expanded = grid.classList.toggle('expanded');
-        btn.setAttribute('aria-expanded', expanded);
-        btn.textContent = expanded ? 'Show Less \u2191' : 'Show All Services \u2193';
+    var cards = track.querySelectorAll('.service-card');
+    var total = cards.length;
+    var currentIndex = 0;
+
+    function getPerView() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 600) return 2;
+        return 1;
+    }
+
+    function getMaxIndex() {
+        return Math.max(0, total - getPerView());
+    }
+
+    function updateTrack() {
+        var wrapper = track.parentElement;
+        var gap = 24; // 1.5rem
+        var perView = getPerView();
+        var cardWidth = (wrapper.offsetWidth - gap * (perView - 1)) / perView;
+        var offset = currentIndex * (cardWidth + gap);
+        track.style.transform = 'translateX(-' + offset + 'px)';
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= getMaxIndex();
+        dotsEl.querySelectorAll('.services-dot').forEach(function(d, i) {
+            d.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    function goTo(index) {
+        currentIndex = Math.max(0, Math.min(index, getMaxIndex()));
+        updateTrack();
+    }
+
+    function buildDots() {
+        dotsEl.innerHTML = '';
+        var max = getMaxIndex();
+        for (var i = 0; i <= max; i++) {
+            var dot = document.createElement('button');
+            dot.className = 'services-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            (function(idx) {
+                dot.addEventListener('click', function() { goTo(idx); resetAuto(); });
+            })(i);
+            dotsEl.appendChild(dot);
+        }
+    }
+
+    var AUTOPLAY_MS = 4000;
+    var autoTimer;
+
+    function advance() {
+        goTo(currentIndex >= getMaxIndex() ? 0 : currentIndex + 1);
+    }
+
+    function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(advance, AUTOPLAY_MS);
+    }
+
+    function resetAuto() {
+        startAuto();
+    }
+
+    prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); resetAuto(); });
+    nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); resetAuto(); });
+
+    var carousel = track.parentElement.parentElement;
+    carousel.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
+    carousel.addEventListener('mouseleave', startAuto);
+
+    buildDots();
+    updateTrack();
+    startAuto();
+
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (currentIndex > getMaxIndex()) currentIndex = getMaxIndex();
+            buildDots();
+            updateTrack();
+        }, 150);
     });
 }
 
