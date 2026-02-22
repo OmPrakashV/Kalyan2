@@ -3717,7 +3717,7 @@ section.google-reviews {
    ==================================== */
 .back-to-top {
     position: fixed;
-    bottom: 5rem;
+    bottom: 7.5rem;
     right: 1.5rem;
     width: 44px;
     height: 44px;
@@ -3816,9 +3816,9 @@ section.google-reviews {
         padding-bottom: 5rem;
     }
 
-    /* Raise back-to-top above mobile CTA bar */
+    /* Raise back-to-top above mobile CTA bar and WhatsApp button */
     .back-to-top {
-        bottom: 5.5rem;
+        bottom: 10rem;
     }
 }
 
